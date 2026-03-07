@@ -16,6 +16,8 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <nav className="sticky top-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4">
@@ -59,8 +61,10 @@ const Navbar = () => {
                 0
               </span>
             </Button>
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <User className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="hidden md:flex" asChild>
+              <Link to="/admin/login">
+                <User className="h-5 w-5" />
+              </Link>
             </Button>
             <Button
               variant="ghost"
