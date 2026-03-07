@@ -16,8 +16,6 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const isActive = (path: string) => location.pathname === path;
-
   return (
     <nav className="sticky top-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4">
