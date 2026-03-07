@@ -59,8 +59,10 @@ const Navbar = () => {
                 0
               </span>
             </Button>
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <User className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="hidden md:flex" asChild>
+              <Link to="/admin/login">
+                <User className="h-5 w-5" />
+              </Link>
             </Button>
             <Button
               variant="ghost"

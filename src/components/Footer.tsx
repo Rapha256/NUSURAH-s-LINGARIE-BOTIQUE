@@ -68,9 +68,14 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-primary-foreground/50">
-            © 2026 Nusurah The Lingerie Vendor. All rights reserved.
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-sm text-primary-foreground/50">
+              © 2026 Nusurah The Lingerie Vendor. All rights reserved.
+            </p>
+            <Link to="/admin/login" className="text-xs text-primary-foreground/30 hover:text-primary transition-colors">
+              Admin
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <a
               href="https://www.tiktok.com/@nusurah.queen"
