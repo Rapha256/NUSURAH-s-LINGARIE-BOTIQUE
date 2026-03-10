@@ -222,20 +222,25 @@ const Products = () => {
                 <Input type="datetime-local" value={form.scheduled_publish_at} onChange={(e) => setForm({ ...form, scheduled_publish_at: e.target.value })} />
               </div>
               <div className="md:col-span-2">
-                <label className="text-sm font-medium">Images</label>
+                <label className="text-sm font-medium">Images & Videos</label>
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {form.images.map((img, i) => (
+                  {form.images.map((url, i) => (
                     <div key={i} className="relative w-20 h-20">
-                      <img src={img} alt="" className="w-full h-full object-cover rounded" />
+                      {isVideoUrl(url) ? (
+                        <video src={url} className="w-full h-full object-cover rounded" muted />
+                      ) : (
+                        <img src={url} alt="" className="w-full h-full object-cover rounded" />
+                      )}
                       <button onClick={() => setForm({ ...form, images: form.images.filter((_, idx) => idx !== i) })}
                         className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
                     </div>
                   ))}
                 </div>
                 <label className="cursor-pointer inline-flex items-center gap-2 px-3 py-2 border rounded-md text-sm hover:bg-muted">
-                  <Upload className="h-4 w-4" /> {uploading ? "Uploading..." : "Upload Images"}
-                  <input type="file" multiple accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
+                  <Upload className="h-4 w-4" /> {uploading ? "Uploading..." : "Upload Images & Videos"}
+                  <input type="file" multiple accept="image/*,video/*,.heic,.heif,.webp,.avif,.svg,.gif,.bmp,.tiff,.mp4,.webm,.mov,.avi,.mkv,.flv,.wmv,.m4v,.3gp,.ogv" className="hidden" onChange={handleMediaUpload} disabled={uploading} />
                 </label>
+                <p className="text-xs text-muted-foreground mt-1">Supports: JPG, PNG, GIF, WebP, AVIF, SVG, HEIC, BMP, TIFF, MP4, WebM, MOV, AVI, MKV and more</p>
               </div>
               <div className="md:col-span-2">
                 <label className="text-sm font-medium">Tags</label>

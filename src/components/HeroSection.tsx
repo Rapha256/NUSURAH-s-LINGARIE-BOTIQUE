@@ -11,9 +11,9 @@ const HeroSection = () => {
         <img
           src="/images/hero-bg.jpeg"
           alt="Nusurah lingerie collection"
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+        <div className="absolute inset-0 bg-gradient-hero opacity-50" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

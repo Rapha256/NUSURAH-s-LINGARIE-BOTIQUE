@@ -25,12 +25,20 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="group bg-card rounded-lg overflow-hidden shadow-card hover:shadow-elevated transition-all duration-300 border border-border">
       {/* Image */}
       <div className="relative aspect-[3/4] overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-        />
+        {/\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v|3gp|ogv)(\?|$)/i.test(product.image) ? (
+          <video
+            src={product.image}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            autoPlay muted loop playsInline
+          />
+        ) : (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        )}
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1">
           {product.isNew && (
