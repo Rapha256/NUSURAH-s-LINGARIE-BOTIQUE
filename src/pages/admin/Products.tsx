@@ -63,14 +63,22 @@ const Products = () => {
     await supabase.from("activity_log").insert({ user_id: user?.id, action, details });
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const isVideoUrl = (url: string) => /\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v|3gp|ogv)(\?|$)/i.test(url);
+
+  const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     setUploading(true);
     const newImages = [...form.images];
     for (const file of Array.from(e.target.files)) {
-      const fileName = `${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("product-images").upload(fileName, file);
-      if (!error) {
+      const ext = file.name.split('.').pop()?.toLowerCase() || '';
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error } = await supabase.storage.from("product-images").upload(fileName, file, {
+        contentType: file.type,
+        cacheControl: '3600',
+      });
+      if (error) {
+        toast({ title: "Upload failed", description: `${file.name}: ${error.message}`, variant: "destructive" });
+      } else {
         const { data } = supabase.storage.from("product-images").getPublicUrl(fileName);
         newImages.push(data.publicUrl);
       }
@@ -214,20 +222,25 @@ const Products = () => {
                 <Input type="datetime-local" value={form.scheduled_publish_at} onChange={(e) => setForm({ ...form, scheduled_publish_at: e.target.value })} />
               </div>
               <div className="md:col-span-2">
-                <label className="text-sm font-medium">Images</label>
+                <label className="text-sm font-medium">Images & Videos</label>
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {form.images.map((img, i) => (
+                  {form.images.map((url, i) => (
                     <div key={i} className="relative w-20 h-20">
-                      <img src={img} alt="" className="w-full h-full object-cover rounded" />
+                      {isVideoUrl(url) ? (
+                        <video src={url} className="w-full h-full object-cover rounded" muted />
+                      ) : (
+                        <img src={url} alt="" className="w-full h-full object-cover rounded" />
+                      )}
                       <button onClick={() => setForm({ ...form, images: form.images.filter((_, idx) => idx !== i) })}
                         className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
                     </div>
                   ))}
                 </div>
                 <label className="cursor-pointer inline-flex items-center gap-2 px-3 py-2 border rounded-md text-sm hover:bg-muted">
-                  <Upload className="h-4 w-4" /> {uploading ? "Uploading..." : "Upload Images"}
-                  <input type="file" multiple accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
+                  <Upload className="h-4 w-4" /> {uploading ? "Uploading..." : "Upload Images & Videos"}
+                  <input type="file" multiple accept="image/*,video/*,.heic,.heif,.webp,.avif,.svg,.gif,.bmp,.tiff,.mp4,.webm,.mov,.avi,.mkv,.flv,.wmv,.m4v,.3gp,.ogv" className="hidden" onChange={handleMediaUpload} disabled={uploading} />
                 </label>
+                <p className="text-xs text-muted-foreground mt-1">Supports: JPG, PNG, GIF, WebP, AVIF, SVG, HEIC, BMP, TIFF, MP4, WebM, MOV, AVI, MKV and more</p>
               </div>
               <div className="md:col-span-2">
                 <label className="text-sm font-medium">Tags</label>
@@ -291,7 +304,7 @@ const Products = () => {
                 <TableRow key={product.id}>
                   <TableCell className="font-medium">
                     <div className="flex items-center gap-2">
-                      {product.images?.[0] && <img src={product.images[0]} className="w-10 h-10 rounded object-cover" />}
+                      {product.images?.[0] && (isVideoUrl(product.images[0]) ? <video src={product.images[0]} className="w-10 h-10 rounded object-cover" muted /> : <img src={product.images[0]} className="w-10 h-10 rounded object-cover" />)}
                       <span>{product.title}</span>
                     </div>
                   </TableCell>
