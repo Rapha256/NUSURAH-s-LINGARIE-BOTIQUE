@@ -304,7 +304,7 @@ const Products = () => {
                 <TableRow key={product.id}>
                   <TableCell className="font-medium">
                     <div className="flex items-center gap-2">
-                      {product.images?.[0] && <img src={product.images[0]} className="w-10 h-10 rounded object-cover" />}
+                      {product.images?.[0] && (isVideoUrl(product.images[0]) ? <video src={product.images[0]} className="w-10 h-10 rounded object-cover" muted /> : <img src={product.images[0]} className="w-10 h-10 rounded object-cover" />)}
                       <span>{product.title}</span>
                     </div>
                   </TableCell>
