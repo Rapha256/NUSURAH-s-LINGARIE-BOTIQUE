@@ -63,14 +63,22 @@ const Products = () => {
     await supabase.from("activity_log").insert({ user_id: user?.id, action, details });
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const isVideoUrl = (url: string) => /\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v|3gp|ogv)(\?|$)/i.test(url);
+
+  const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     setUploading(true);
     const newImages = [...form.images];
     for (const file of Array.from(e.target.files)) {
-      const fileName = `${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("product-images").upload(fileName, file);
-      if (!error) {
+      const ext = file.name.split('.').pop()?.toLowerCase() || '';
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error } = await supabase.storage.from("product-images").upload(fileName, file, {
+        contentType: file.type,
+        cacheControl: '3600',
+      });
+      if (error) {
+        toast({ title: "Upload failed", description: `${file.name}: ${error.message}`, variant: "destructive" });
+      } else {
         const { data } = supabase.storage.from("product-images").getPublicUrl(fileName);
         newImages.push(data.publicUrl);
       }
