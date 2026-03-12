@@ -29,21 +29,21 @@ const Contact = () => {
           <div>
             <h2 className="font-display text-2xl font-bold mb-6">Get in Touch</h2>
             <div className="flex flex-col gap-5">
-              <a href="tel:+256709449823" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+              <a href="tel:+256759924123" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <Phone className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm">Call Us</p>
-                  <p className="text-muted-foreground text-sm">+256 709 449823</p>
+                  <p className="font-medium text-sm">📞 Call Us</p>
+                  <p className="text-muted-foreground text-sm">+256 759 924123</p>
                 </div>
               </a>
-              <a href="tel:+256765608475" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
+              <a href="https://wa.me/256765608475" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Phone className="h-4 w-4 text-primary" />
+                  <MessageCircle className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm">Alternative</p>
+                  <p className="font-medium text-sm">💬 WhatsApp</p>
                   <p className="text-muted-foreground text-sm">+256 765 608475</p>
                 </div>
               </a>
@@ -56,15 +56,15 @@ const Contact = () => {
                   <p className="text-muted-foreground text-sm">nusurahthelingerievendor@gmail.com</p>
                 </div>
               </a>
-              <div className="flex items-center gap-3">
+              <a href="https://www.google.com/maps/search/Gayaza+Road+Kalaji+Trading+Center+Uganda" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <MapPin className="h-4 w-4 text-primary" />
                 </div>
                 <div>
                   <p className="font-medium text-sm">Location</p>
-                  <p className="text-muted-foreground text-sm">Gayaza Road, Kasangati, Kalagi Trading Center, Uganda</p>
+                  <p className="text-muted-foreground text-sm">Gayaza Road, Kalaji Trading Center, Uganda</p>
                 </div>
-              </div>
+              </a>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                   <Clock className="h-4 w-4 text-primary" />
@@ -77,7 +77,7 @@ const Contact = () => {
             </div>
 
             <div className="mt-8 flex gap-3">
-              <a href="https://wa.me/256709449823" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/256765608475" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-gradient-primary text-primary-foreground hover:opacity-90">
                   <MessageCircle className="h-4 w-4 mr-2" /> WhatsApp
                 </Button>
@@ -124,14 +124,14 @@ const Contact = () => {
             {/* Map */}
             <div className="mt-8 rounded-lg overflow-hidden border border-border">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.23!2d32.5877!3d0.4058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb4b10db1b73%3A0x7c06bb5e5e5e5e5e!2sKasangati%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7979.5!2d32.5877!3d0.4058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb4b10db1b73%3A0x7c06bb5e5e5e5e5e!2sKalaji%20Trading%20Center%2C%20Gayaza%20Road%2C%20Uganda!5e0!3m2!1sen!2sus!4v1700000000000"
                 width="100%"
                 height="250"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Nusurah Location"
+                title="Nusurah Location - Gayaza Road, Kalaji Trading Center"
               />
             </div>
           </div>

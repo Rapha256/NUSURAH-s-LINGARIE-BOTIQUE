@@ -37,11 +37,11 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-lg mb-4">Contact Us</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:+256709449823" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary transition-colors">
-                <Phone className="h-4 w-4" /> +256 709 449823
+              <a href="tel:+256759924123" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary transition-colors">
+                <Phone className="h-4 w-4" /> 📞 +256 759 924123
               </a>
-              <a href="tel:+256765608475" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary transition-colors">
-                <Phone className="h-4 w-4" /> +256 765 608475
+              <a href="https://wa.me/256765608475" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary transition-colors">
+                <Phone className="h-4 w-4" /> 💬 +256 765 608475 (WhatsApp)
               </a>
               <a href="mailto:nusurahthelingerievendor@gmail.com" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary transition-colors">
                 <Mail className="h-4 w-4 shrink-0" />
@@ -54,10 +54,15 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-semibold text-lg mb-4">Information</h4>
             <div className="flex flex-col gap-3 text-sm text-primary-foreground/70">
-              <div className="flex items-center gap-2">
+              <a
+                href="https://www.google.com/maps/search/Gayaza+Road+Kalaji+Trading+Center+Uganda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
                 <MapPin className="h-4 w-4 shrink-0" />
-                <span>Gayaza Road, Kasangati, Uganda</span>
-              </div>
+                <span>Gayaza Road, Kalaji Trading Center, Uganda</span>
+              </a>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 shrink-0" />
                 <span>Open 24/7</span>
@@ -86,7 +91,7 @@ const Footer = () => {
               TikTok
             </a>
             <a
-              href="https://wa.me/256709449823"
+              href="https://wa.me/256765608475"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-primary-foreground/70 hover:text-primary transition-colors"

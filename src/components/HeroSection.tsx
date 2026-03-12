@@ -67,7 +67,7 @@ const HeroSection = () => {
               </Button>
             </Link>
             <a
-              href="https://wa.me/256709449823?text=Hi%20Nusurah!%20I%27d%20like%20to%20see%20your%20collection."
+              href="https://wa.me/256765608475?text=Hi%20Nusurah!%20I%27d%20like%20to%20see%20your%20collection."
               target="_blank"
               rel="noopener noreferrer"
             >
