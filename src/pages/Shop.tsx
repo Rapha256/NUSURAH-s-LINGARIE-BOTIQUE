@@ -1,16 +1,20 @@
 import { useState, useMemo } from "react";
 import ProductCard from "@/components/ProductCard";
 import { products, categories } from "@/data/products";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Search, SlidersHorizontal, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Shop = () => {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
+  const [showNewThisWeek, setShowNewThisWeek] = useState(false);
+
+  const newThisWeek = useMemo(() => products.filter((p) => p.isNewThisWeek), []);
 
   const filtered = useMemo(() => {
-    return products.filter((p) => {
+    const source = showNewThisWeek ? newThisWeek : products;
+    return source.filter((p) => {
       const matchesSearch =
         p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.description.toLowerCase().includes(search.toLowerCase());
@@ -18,11 +22,10 @@ const Shop = () => {
         selectedCategory === "All" || p.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [search, selectedCategory]);
+  }, [search, selectedCategory, showNewThisWeek, newThisWeek]);
 
   return (
     <main className="min-h-screen bg-background">
-      {/* Header */}
       <section className="bg-gradient-hero py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -35,6 +38,18 @@ const Shop = () => {
       </section>
 
       <div className="container mx-auto px-4 py-8">
+        {/* New This Week Toggle */}
+        <div className="flex justify-center mb-6">
+          <Button
+            variant={showNewThisWeek ? "default" : "outline"}
+            onClick={() => setShowNewThisWeek(!showNewThisWeek)}
+            className={showNewThisWeek ? "bg-gradient-primary text-primary-foreground" : ""}
+          >
+            <Sparkles className="h-4 w-4 mr-2" />
+            {showNewThisWeek ? "Showing New This Week 🔥" : "New This Week 🔥"}
+          </Button>
+        </div>
+
         {/* Search & Filter Bar */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1 relative">
@@ -91,6 +106,7 @@ const Shop = () => {
           <div className="flex-1">
             <p className="text-sm text-muted-foreground mb-4">
               {filtered.length} product{filtered.length !== 1 ? "s" : ""} found
+              {showNewThisWeek && " — New This Week"}
             </p>
             {filtered.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
