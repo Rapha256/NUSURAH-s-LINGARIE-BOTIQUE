@@ -42,7 +42,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground mb-2 font-display italic"
           >
-            "If others can, then even me I can."
+            "Where Comfort Meets Desire"
           </motion.p>
 
           <motion.p
