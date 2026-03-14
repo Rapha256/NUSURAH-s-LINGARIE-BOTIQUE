@@ -4,6 +4,9 @@ const categories = [
   { name: "Nightwear", emoji: "🌙", color: "bg-lavender-light" },
   { name: "Lingerie", emoji: "💕", color: "bg-rose-light" },
   { name: "Innerwear", emoji: "✨", color: "bg-nude-light" },
+  { name: "Bras", emoji: "👙", color: "bg-rose-light" },
+  { name: "Vests", emoji: "👚", color: "bg-lavender-light" },
+  { name: "Men's Innerwear", emoji: "🩲", color: "bg-nude-light" },
   { name: "New Arrivals", emoji: "🆕", color: "bg-lavender-light" },
 ];
 
